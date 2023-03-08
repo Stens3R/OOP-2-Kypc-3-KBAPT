@@ -1,10 +1,35 @@
-﻿class Program
+﻿using System.Data.Common;
+
+class Program
 {
     class basic
     {
+        public int value1;
         public void metod()
         {
             Console.WriteLine("Метод класса 'basic' выполнен");
+        }
+
+        public static implicit operator basic(int a)
+        {
+            return new basic { value1 = a };
+        }
+
+        public static implicit operator int(basic bas)
+        {
+            return bas.value1;
+        }
+
+        public static explicit operator byte(basic bas)
+        {
+            if(bas.value1 > byte.MaxValue)
+            {
+                return byte.MaxValue;
+            }
+            else
+            {
+                return (byte)bas.value1;
+            }
         }
     }
     class naslednik : basic
@@ -39,7 +64,7 @@
         basic bas = nas;
 
         // Пункт 2 Явное преобразование
-        Console.WriteLine("Пункт 2 Явное преобразование");
+        Console.WriteLine("\nПункт 2 Явное преобразование");
         float a = 1.15f;
         Console.WriteLine(a);
         int b = (int)a;
@@ -51,7 +76,7 @@
         //naslednik nas_2 = (naslednik)bas_2;
 
         // Пункт 3 Вызвать и обработать исключение преобразования типов;
-        Console.WriteLine("Пункт 3 Вызвать и обработать исключение преобразования типов");
+        Console.WriteLine("\nПункт 3 Вызвать и обработать исключение преобразования типов");
         try
         {
             dynamic dyn_3 = 1.3;
@@ -62,7 +87,7 @@
             Console.WriteLine("Преобразование невозможно");
         }
         // Пункт 4 Безопасное приведение ссылочных типов с помощью операторов as и is; 
-        Console.WriteLine("Пункт 4 Безопасное приведение ссылочных типов с помощью оператора is");
+        Console.WriteLine("\nПункт 4 Безопасное приведение ссылочных типов с помощью оператора is");
         naslednik nas_4 = new naslednik();
         if (nas_4 is naslednik)
         {
@@ -109,7 +134,52 @@
         TestForNaslednik_naslednika(nas_4);
 
         // Пункт 5 Пользовательское преобразование типов Implicit, Explicit;
+        Console.WriteLine("\nПункт 5 Пользовательское преобразование типов Implicit, Explicit");
+        basic bas_5 = 256;
+        int i_5 = bas_5;
+        byte b_5 = (byte)bas_5;
+        Console.WriteLine($"bas_5.value1: {bas_5.value1}; i_5: {i_5}; b_5: {b_5}");
 
+        // Пункт 6 Преобразование с помощью класса Convert и преобразование строки в число
+        Console.WriteLine("\nПункт 6 Преобразование с помощью класса Convert");
+        string str_6 = "3";
+        int i_6 = Convert.ToInt32(str_6);
+        Console.WriteLine(i_6);
+        bool b_6 = true;
+        double d_6 = Convert.ToDouble(b_6);
+        Console.WriteLine(d_6);
+
+        try
+        {
+            i_6 = Int32.Parse(str_6);
+        }
+        catch
+        {
+            Console.WriteLine("Число не может быть преобазовано в int");
+        }
+
+
+        if (!Double.TryParse(str_6, out d_6))
+        {
+            Console.WriteLine("Не удалось преобразовать переменную");
+        }
+        else
+        {
+            Console.WriteLine(d_6);
+        }
+        // Пункт 7	Написать программу, позволяющую ввод в текстовое поле TextBox только символов, задающих правильный формат вещественного числа со знаком.
+        Console.WriteLine("\nПункт 7");
+        Console.WriteLine("\nВведите строку - вещественное число со знаком");
+        string? str_7 = Console.ReadLine();
+        double value_7;
+        if (!Double.TryParse(str_7, out value_7))
+        {
+            Console.WriteLine("Неверно задано значение!");
+        }
+        else
+        {
+            Console.WriteLine(value_7);
+        }
     }
 }
 
