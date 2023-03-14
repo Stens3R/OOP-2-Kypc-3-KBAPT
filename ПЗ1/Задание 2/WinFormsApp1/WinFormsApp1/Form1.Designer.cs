@@ -40,10 +40,12 @@
             buttonIterToOutput = new Button();
             buttonOutput = new Button();
             groupBox5 = new GroupBox();
+            labelOutput = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // textBoxInput
@@ -78,6 +80,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.FromArgb(224, 224, 224);
             groupBox1.Controls.Add(textBoxInput);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
@@ -88,6 +91,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.FromArgb(224, 224, 224);
             groupBox2.Controls.Add(textBoxOutputMath);
             groupBox2.Controls.Add(buttonOutputMath);
             groupBox2.Location = new Point(306, 12);
@@ -109,6 +113,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.BackColor = Color.FromArgb(224, 224, 224);
             groupBox3.Controls.Add(textBoxInputInitialGuess);
             groupBox3.Location = new Point(12, 114);
             groupBox3.Name = "groupBox3";
@@ -119,6 +124,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.BackColor = Color.FromArgb(224, 224, 224);
             groupBox4.Controls.Add(buttonIterToOutput);
             groupBox4.Controls.Add(buttonOutput);
             groupBox4.Controls.Add(textBoxOutput);
@@ -151,12 +157,24 @@
             // 
             // groupBox5
             // 
+            groupBox5.BackColor = Color.FromArgb(224, 224, 224);
+            groupBox5.Controls.Add(labelOutput);
+            groupBox5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox5.Location = new Point(12, 268);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(776, 170);
             groupBox5.TabIndex = 0;
             groupBox5.TabStop = false;
             groupBox5.Text = "Метод Ньютона";
+            // 
+            // labelOutput
+            // 
+            labelOutput.AutoSize = true;
+            labelOutput.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelOutput.Location = new Point(6, 19);
+            labelOutput.Name = "labelOutput";
+            labelOutput.Size = new Size(0, 21);
+            labelOutput.TabIndex = 0;
             // 
             // Form1
             // 
@@ -178,6 +196,8 @@
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -195,5 +215,6 @@
         private Button buttonIterToOutput;
         private Button buttonOutput;
         private GroupBox groupBox5;
+        private Label labelOutput;
     }
 }
