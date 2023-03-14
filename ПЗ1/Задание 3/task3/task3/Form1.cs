@@ -29,6 +29,7 @@ namespace task3
             }
 
         }
+
         static string convert(int inp)
         {
             StringBuilder str = new();
