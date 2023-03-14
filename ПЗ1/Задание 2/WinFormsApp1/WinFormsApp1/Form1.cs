@@ -14,20 +14,20 @@ namespace WinFormsApp1
         int iter = 0;
         static decimal Newton(decimal input, decimal guess, ref int iter)
         {
-            
-                while (Math.Abs(guess * guess - input) > Convert.ToDecimal(Math.Pow(10, -28)))
-                {
-                    guess = (guess + (input / guess)) / 2;
-                    iter++;
-                }
-            
+
+            while (Math.Abs(guess * guess - input) > Convert.ToDecimal(Math.Pow(10, -28)))
+            {
+                guess = (guess + (input / guess)) / 2;
+                iter++;
+            }
+
             return guess;
         }
 
         static decimal Newton(decimal input, ref decimal guess, ref int iter)
         {
-                guess = (guess + input / guess) / 2;
-                iter++;
+            guess = (guess + input / guess) / 2;
+            iter++;
 
             return guess;
         }
@@ -41,11 +41,10 @@ namespace WinFormsApp1
                 textBoxInput.Select();
                 return;
             }
-
         }
         private void textBoxInputInitialGuess_Leave(object sender, EventArgs e)
         {
-            if (!Decimal.TryParse(textBoxInputInitialGuess.Text, out initial_guess)|| initial_guess < 0)
+            if (!Decimal.TryParse(textBoxInputInitialGuess.Text, out initial_guess) || initial_guess < 0)
             {
                 if (textBoxInputInitialGuess.Text == String.Empty) { initial_guess = 0; return; }
                 MessageBox.Show("Неверно задано значение!, Введите число cнова");
@@ -65,7 +64,7 @@ namespace WinFormsApp1
 
         private void buttonIterToOutput_Click(object sender, EventArgs e)
         {
-            textBoxOutput.Text = Convert.ToString(Newton(input,ref initial_guess, ref iter));
+            textBoxOutput.Text = Convert.ToString(Newton(input, ref initial_guess, ref iter));
         }
     }
 }
