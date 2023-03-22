@@ -14,9 +14,10 @@ namespace WinFormsApp1
         int iter = 0;
         static decimal Newton(decimal input, decimal guess, ref int iter)
         {
-            iter = 0;
-            while (Math.Abs(guess * guess - input) > Convert.ToDecimal(Math.Pow(10, -28)))
+            decimal? previous_guess = null;
+            while (Math.Abs(guess * guess - input) > Convert.ToDecimal(Math.Pow(10, -28)) && previous_guess!=guess)
             {
+                previous_guess = guess;
                 guess = (guess + (input / guess)) / 2;
                 iter++;
             }
@@ -62,13 +63,15 @@ namespace WinFormsApp1
         private void buttonOutput_Click(object sender, EventArgs e)
         {
             textBoxOutput.Text = Convert.ToString(Newton(input, initial_guess, ref iter));
-            labelOutput.Text = $"Количество итераций: {iter}";
+            labelOutput.Text = $"Количество итераций: {iter}\n" +
+                $"Погрешность: {Math.Abs(Convert.ToDecimal(Math.Sqrt((double)input)) - Convert.ToDecimal(textBoxOutput.Text))}";
         }
 
         private void buttonIterToOutput_Click(object sender, EventArgs e)
         {
             textBoxOutput.Text = Convert.ToString(Newton(input, ref initial_guess, ref iter));
-            labelOutput.Text = $"Количество итераций: {iter}";
+            labelOutput.Text = $"Количество итераций: {iter}\n" +
+                $"Погрешность: {Math.Abs(Convert.ToDecimal(Math.Sqrt((double)input)) - Convert.ToDecimal(textBoxOutput.Text))}";
         }
     }
 }
