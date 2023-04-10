@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
         int num_1, num_2;
         public static int NOD(int a, int b)//метод Евклида
         {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
             if (a == 0) return b;
             while (b != 0)
             {

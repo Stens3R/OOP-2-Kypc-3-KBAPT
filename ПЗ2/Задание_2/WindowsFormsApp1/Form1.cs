@@ -1,6 +1,14 @@
-using static System.Net.Mime.MediaTypeNames;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace Задание_1
+namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
@@ -13,6 +21,9 @@ namespace Задание_1
         int[] nums;
         public static int NOD(int a, params int[] nums)//метод Евклида
         {
+            a = Math.Abs(a);
+            nums[0] = Math.Abs(nums[0]);
+
             if (a == 0) return nums[0];
             while (nums[0] != 0)
             {
@@ -29,12 +40,12 @@ namespace Задание_1
             {
                 return a;
             }
-            return NOD(a, nums[1..nums.Length]);
+            return NOD(a, nums.Skip(1).ToArray());
         }
 
         public static int NOD(params int[] nums)
         {
-            return NOD(nums[0], nums[1..nums.Length]);
+            return NOD(nums[0], nums.Skip(1).ToArray());
         }
 
 
