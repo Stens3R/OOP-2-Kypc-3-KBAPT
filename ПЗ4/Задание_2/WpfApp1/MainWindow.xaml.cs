@@ -90,7 +90,6 @@ namespace WpfApp1
 
             // Выводим сформированную строку в Label
             testDetailsLabel.Content = selectionStringBuilder.ToString();
-            testDetailsTextBlock.Text = selectionStringBuilder.ToString();
         }
 
     }

@@ -24,8 +24,6 @@
             <ListBoxItem Content="Pass" Tag="{x:Static local:TestResult.Pass}"/>
             <ListBoxItem Content="Fail" Tag="{x:Static local:TestResult.Fail}"/>
         </ListBox>
-        <Label x:Name="testDetailsLabel" Margin="0,361,0,48"></Label>
-        <TextBlock x:Name="testDetailsTextBlock" TextWrapping="Wrap" Text="TextBlock" Margin="0,391,0,21"/>
-
+        <Label x:Name="testDetailsLabel" Margin="0,361,0,10" />
     </Grid>
 </Window>
