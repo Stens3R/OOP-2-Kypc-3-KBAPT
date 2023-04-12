@@ -99,20 +99,20 @@ namespace WindowsFormsApp1
             set_values_in_grid(ref dataGridView1, mtx1);
             set_values_in_grid(ref dataGridView2, mtx2);
         }
-        
-       
+
+
 
 
         public static void set_values_in_grid(ref DataGridView grid, double[,] arr)
         {
             int rows = arr.GetUpperBound(0) + 1;
 
-            grid.ColumnCount = rows;
-            grid.RowCount = arr.Length / rows;
+            grid.RowCount = rows;
+            grid.ColumnCount = arr.Length / rows;
 
-            for (int i = 0; i <  rows ; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < arr.Length/rows; j++)
+                for (int j = 0; j < arr.Length / rows; j++)
                 {
                     grid.Rows[i].Cells[j].Value = arr[i, j];
                 }
