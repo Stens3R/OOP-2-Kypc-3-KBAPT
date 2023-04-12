@@ -46,6 +46,7 @@ namespace WindowsFormsApp1
             mtx2 = new double[mtx1_col, mtx2_col];
             dataGridView2.ColumnCount = mtx2_col;
             dataGridView2.RowCount = mtx1_col;
+            mtx2_row = mtx1_col;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -88,7 +89,7 @@ namespace WindowsFormsApp1
                 }
             }
 
-            for (int i = 0; i < mtx1_col; i++)
+            for (int i = 0; i < mtx2_row; i++)
             {
                 for (int j = 0; j < mtx2_col; j++)
                 {
