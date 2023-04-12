@@ -36,18 +36,17 @@ namespace WpfApp1
                 var2 = 0;
             }
 
-            checked//что-бы вызвать исключение, которое скрывается по умолчанию
-            {
+            
                 try
                 {
-                    int mult_result = var1 * var2;//умножение чтобы достичь переполнения
-                    result.Content = mult_result;//выведение результата
+                    int mult_result = checked(var1 * var2);
+                    result.Content = mult_result;
                 }
                 catch (OverflowException ex)
                 {
-                    MessageBox.Show(ex.Message);//вывод сообщения об ошибке
+                    MessageBox.Show(ex.Message);
                 }
-            }
+            
         }
     }
 }
