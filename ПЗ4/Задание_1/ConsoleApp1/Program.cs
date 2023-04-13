@@ -39,6 +39,12 @@ namespace OOP4_Task1
                                      a.Real * b.Imaginary + a.Imaginary * b.Real);
         }
 
+        public static ComplexNumber operator /(ComplexNumber a, ComplexNumber b)
+        {
+            return new ComplexNumber((a.Real * b.Real + a.Imaginary * b.Imaginary) / (b.Real * b.Real + b.Imaginary * b.Imaginary),
+                (b.Real * a.Imaginary - a.Real * b.Imaginary) / (b.Real * b.Real + b.Imaginary * b.Imaginary));
+        }
+
         // Перегрузка оператора равенства (==) для комплексных чисел
         public static bool operator ==(ComplexNumber a, ComplexNumber b)
         {
@@ -61,12 +67,6 @@ namespace OOP4_Task1
             return false;
         }
 
-        // Генерация хэш-кода для комплексного числа
-        public override int GetHashCode()
-        {
-            return Real.GetHashCode() ^ Imaginary.GetHashCode();
-        }
-
         // Переопределенный метод ToString для представления комплексного числа в виде строки
         public override string ToString()
         {
@@ -86,6 +86,7 @@ namespace OOP4_Task1
             ComplexNumber sum = a + b;
             ComplexNumber diff = a - b;
             ComplexNumber prod = a * b;
+            ComplexNumber div = a / b;
 
             // Вывод результатов операций с комплексными числами на консоль
             Console.WriteLine($"Число a: {a}");
@@ -93,6 +94,7 @@ namespace OOP4_Task1
             Console.WriteLine($"Сумма: {sum}");
             Console.WriteLine($"Разность: {diff}");
             Console.WriteLine($"Произведение: {prod}");
+            Console.WriteLine($"Частное: {div}");
             Console.WriteLine($"Модуль числа a: {a.Modulus}");
             Console.WriteLine($"Модуль числа b: {b.Modulus}");
             Console.WriteLine($"a == b: {a == b}");
