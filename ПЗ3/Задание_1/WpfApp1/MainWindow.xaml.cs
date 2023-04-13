@@ -82,7 +82,7 @@ namespace WpfApp1
             {
                 backup_coolant_system_status.Content = myswitch.VerifyBackupCoolantSystem().ToString();
             }
-            catch (Exception ex)//не указывается какое конкретно исключение дабы обрабатывать 2 возможных
+            catch
             {
                 MessageBox.Show(ex.Message);
             }

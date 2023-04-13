@@ -9,7 +9,7 @@
     <Grid>
         <TextBox x:Name="mult_1" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="mult_2" HorizontalAlignment="Left" Margin="170,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="multiply_button" Content="Multiply" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Click="multiply_button_Click" Height="24" Width="120"/>
+        <Button x:Name="multiply_button" Content="Умножить" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Click="multiply_button_Click" Height="24" Width="120"/>
         <Label Content="Произведение:" HorizontalAlignment="Left" Margin="316,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="result" Content="" HorizontalAlignment="Left" Margin="316,37,0,0" VerticalAlignment="Top"/>
         <Label Content="2 множитель:" HorizontalAlignment="Left" Margin="170,5,0,0" VerticalAlignment="Top"/>
