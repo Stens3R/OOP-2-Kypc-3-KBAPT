@@ -8,10 +8,10 @@ namespace task3
         {
             InitializeComponent();
         }
-        int input;
+        int input, sys;
         private void button_convert_Click(object sender, EventArgs e)
         {
-            labelOutput.Text = $"В двоичной\n{convert(input)}";
+            labelOutput.Text = $"В {sys} системе исчисления\n{convert(input, sys)}";
         }
         private void textBoxInput_Leave(object sender, EventArgs e)
         {
@@ -27,19 +27,47 @@ namespace task3
                 textBoxInput.Select();
                 return;
             }
+        }
+
+        private void textBoxSys_Leave(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(textBoxSys.Text, out sys) || sys < 2)
+            {
+                if (textBoxSys.Text == String.Empty)
+                {
+                    sys = 2;
+                    textBoxSys.Text = "2";
+                    return;
+                }
+                MessageBox.Show("Неверно задано значение!, Введите число cнова");
+                textBoxSys.Select();
+                return;
+            }
 
         }
 
-        static string convert(int inp)
+        static string convert(int inp, int sys)
         {
             StringBuilder str = new();
+            int temp;
             do
             {
-                str.Insert(0, inp % 2);
-                inp /= 2;
+                temp = inp % sys;
+                str.Insert(0, (Alph)temp);
+                inp /= sys;
             } while (inp > 0);
             try { return str.ToString(); }
             catch { MessageBox.Show("Ошибка в методе Convert, str вернул null"); return "error"; }
+        }
+
+        enum Alph
+        {
+            A = 10,
+            B,
+            C,
+            D,
+            E,
+            F
         }
     }
 }

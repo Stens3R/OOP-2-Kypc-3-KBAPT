@@ -26,15 +26,15 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        Switch myswitch = new Switch();//создание экземпляра класса switch
+        Switch myswitch = new Switch();
 
         private void shutdown_button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                generator_status.Content = myswitch.DisconnectPowerGenerator().ToString();//вызывает метод класса
-            }//результат выполнения метода выводит на экран
-            catch (PowerGeneratorCommsException ex)//ловит исключение и выводит текст сообщения в messagebox
+                generator_status.Content = myswitch.DisconnectPowerGenerator().ToString();
+            }
+            catch (PowerGeneratorCommsException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -46,7 +46,7 @@ namespace WpfApp1
 
         private void core_temperature_button_Click(object sender, RoutedEventArgs e)
         {
-            try//аналогично предыдущему обработчику
+            try
             {
                 core_status.Content = myswitch.GetCoreTemperature().ToString();
             }
@@ -82,7 +82,7 @@ namespace WpfApp1
             {
                 backup_coolant_system_status.Content = myswitch.VerifyBackupCoolantSystem().ToString();
             }
-            catch
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -126,7 +126,7 @@ namespace WpfApp1
             }
         }
 
-        public void final_check()//функция проверяющая общее состояние всех систем
+        public void final_check()
         {
             if (generator_status.Content.ToString() == "Success" &&
                 core_status.Content.ToString() != "" &&
