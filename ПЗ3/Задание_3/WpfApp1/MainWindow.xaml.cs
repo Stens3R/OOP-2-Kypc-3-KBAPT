@@ -35,18 +35,15 @@ namespace WpfApp1
                 var1 = 0;
                 var2 = 0;
             }
-
-            
-                try
-                {
-                    int mult_result = checked(var1 * var2);
-                    result.Content = mult_result;
-                }
-                catch (OverflowException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            
+            try
+            {
+                int mult_result = checked(var1 * var2);
+                result.Content = mult_result;
+            }
+            catch (OverflowException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

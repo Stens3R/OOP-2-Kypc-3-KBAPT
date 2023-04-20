@@ -17,22 +17,18 @@ namespace OOP4_Task1
             Imaginary = imaginary;
         }
 
-        // Свойство модуля комплексного числа
         public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
 
-        // Перегрузка оператора сложения для комплексных чисел
         public static ComplexNumber operator +(ComplexNumber a, ComplexNumber b)
         {
             return new ComplexNumber(a.Real + b.Real, a.Imaginary + b.Imaginary);
         }
 
-        // Перегрузка оператора вычитания для комплексных чисел
         public static ComplexNumber operator -(ComplexNumber a, ComplexNumber b)
         {
             return new ComplexNumber(a.Real - b.Real, a.Imaginary - b.Imaginary);
         }
 
-        // Перегрузка оператора умножения для комплексных чисел
         public static ComplexNumber operator *(ComplexNumber a, ComplexNumber b)
         {
             return new ComplexNumber(a.Real * b.Real - a.Imaginary * b.Imaginary,
@@ -45,19 +41,16 @@ namespace OOP4_Task1
                 (b.Real * a.Imaginary - a.Real * b.Imaginary) / (b.Real * b.Real + b.Imaginary * b.Imaginary));
         }
 
-        // Перегрузка оператора равенства (==) для комплексных чисел
         public static bool operator ==(ComplexNumber a, ComplexNumber b)
         {
             return a.Real.Equals(b.Real) && a.Imaginary.Equals(b.Imaginary);
         }
 
-        // Перегрузка оператора неравенства (!=) для комплексных чисел
         public static bool operator !=(ComplexNumber a, ComplexNumber b)
         {
             return !(a == b);
         }
 
-        // Переопределенный метод Equals для проверки равенства двух комплексных чисел
         public override bool Equals(object obj)
         {
             if (obj is ComplexNumber)
@@ -67,7 +60,11 @@ namespace OOP4_Task1
             return false;
         }
 
-        // Переопределенный метод ToString для представления комплексного числа в виде строки
+        public override int GetHashCode()
+        {
+            return Real.GetHashCode() ^ Imaginary.GetHashCode();
+        }
+
         public override string ToString()
         {
             return $"{Real} {(Imaginary < 0 ? "-" : "+")} {Math.Abs(Imaginary)}i";
