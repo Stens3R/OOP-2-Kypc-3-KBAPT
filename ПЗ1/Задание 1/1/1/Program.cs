@@ -72,8 +72,7 @@ class Program
         char c = (char)b;
         Console.WriteLine(c);
 
-        //basic bas_2 = new basic();
-        //naslednik nas_2 = (naslednik)bas_2;
+
 
         // Пункт 3 Вызвать и обработать исключение преобразования типов;
         Console.WriteLine("\nПункт 3 Вызвать и обработать исключение преобразования типов");

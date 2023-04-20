@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         double[,] mtx3;
         Random rnd = new Random();
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (!Int32.TryParse(textBox1.Text, out mtx1_col))
@@ -38,44 +39,65 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Не все элементы возможно преобразовать в числа");
             if (!Int32.TryParse(textBox3.Text, out mtx2_col))
                 MessageBox.Show("Не все элементы возможно преобразовать в числа");
+            if (!Int32.TryParse(textBox4.Text, out mtx2_row))
+                MessageBox.Show("Не все элементы возможно преобразовать в числа");
 
             mtx1 = new double[mtx1_row, mtx1_col];
-            dataGridView1.ColumnCount = mtx1_col ;
+            mtx2 = new double[mtx2_row, mtx2_col];
+            dataGridView1.ColumnCount = mtx1_col;
             dataGridView1.RowCount = mtx1_row;
-
-            mtx2 = new double[mtx1_col, mtx2_col];
             dataGridView2.ColumnCount = mtx2_col;
-            dataGridView2.RowCount = mtx1_col;
-            mtx2_row = mtx1_col;
+            dataGridView2.RowCount = mtx2_row;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             get_Values_From_Grid(dataGridView1, ref mtx1);
             get_Values_From_Grid(dataGridView2, ref mtx2);
-
+            try
+            {
+            
             mtx1_row = mtx1.GetUpperBound(0) + 1;
             mtx1_col = mtx1.Length / mtx1_row;
 
             mtx2_row = mtx2.GetUpperBound(0) + 1;
             mtx2_col = mtx2.Length / mtx2_row;
 
-            mtx3_row = mtx1_row;
+            if (mtx1_col != mtx2_row)
+            {
+                    throw new ArgumentException("Размер матриц не подходит для умножения, кол-во столбцов в первой матрице не равно кол-во строк во второй");
+            }
+             mtx3_row = mtx1_row;
             mtx3_col = mtx2_col;
             mtx3 = new double[mtx3_row, mtx3_col];
-
-            for(int i =0; i < mtx3_row; i++)
-            {
-                for(int j = 0; j < mtx3_col; j++)
+                try
                 {
-                    double elem = 0;
-                    for(int k = 0;k< mtx1_col; k++)
+                    for (int i = 0; i < mtx3_row; i++)
                     {
-                        elem += mtx1[i, k] * mtx2[k, j];
+                        for (int j = 0; j < mtx3_col; j++)
+                        {
+                            double elem = 0;
+                            for (int k = 0; k < mtx1_col; k++)
+                            {
+                                if (!(mtx1[i, k]>0))
+                                {
+                                    throw new ArgumentException("Неверное значение в ячейке "+ i.ToString() + " "+ k.ToString());
+                                }
+                                elem += mtx1[i, k] * mtx2[k, j];
+                            }
+                            mtx3[i, j] = elem;
+                        }
+                        set_values_in_grid(ref dataGridView3, mtx3);
                     }
-                    mtx3[i, j]= elem;
                 }
-                set_values_in_grid(ref dataGridView3, mtx3);
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -100,20 +122,20 @@ namespace WindowsFormsApp1
             set_values_in_grid(ref dataGridView1, mtx1);
             set_values_in_grid(ref dataGridView2, mtx2);
         }
-
-
+        
+       
 
 
         public static void set_values_in_grid(ref DataGridView grid, double[,] arr)
         {
             int rows = arr.GetUpperBound(0) + 1;
 
-            grid.RowCount = rows;
             grid.ColumnCount = arr.Length / rows;
+            grid.RowCount = rows ;
 
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i <  rows ; i++)
             {
-                for (int j = 0; j < arr.Length / rows; j++)
+                for (int j = 0; j < arr.Length/rows; j++)
                 {
                     grid.Rows[i].Cells[j].Value = arr[i, j];
                 }
