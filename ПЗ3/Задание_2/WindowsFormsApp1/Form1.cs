@@ -79,9 +79,13 @@ namespace WindowsFormsApp1
                             double elem = 0;
                             for (int k = 0; k < mtx1_col; k++)
                             {
-                                if (!(mtx1[i, k]>0))
+                                if (mtx1[i, k]<0)
                                 {
-                                    throw new ArgumentException("Неверное значение в ячейке "+ i.ToString() + " "+ k.ToString());
+                                    throw new ArgumentException("Неверное значение в 1 матрице в ячейке "+ i.ToString() + " "+ k.ToString());
+                                }
+                                if(mtx2[k, j] < 0)
+                                {
+                                    throw new ArgumentException("Неверное значение в 2 матрице в ячейке " + i.ToString() + " " + k.ToString());
                                 }
                                 elem += mtx1[i, k] * mtx2[k, j];
                             }
@@ -123,8 +127,7 @@ namespace WindowsFormsApp1
             set_values_in_grid(ref dataGridView2, mtx2);
         }
         
-       
-
+    
 
         public static void set_values_in_grid(ref DataGridView grid, double[,] arr)
         {
@@ -146,7 +149,6 @@ namespace WindowsFormsApp1
         {
             int columns = grid.ColumnCount;
             int rows = grid.RowCount;
-            // Iterate over cells in Grid, copying to matrix array
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
